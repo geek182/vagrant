@@ -1,26 +1,24 @@
 ---
-- hosts: all
-  become: yes
-  tasks:
-    - name: Add elastic apt-key
-      apt_key: 
-        url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-        state: present 
-    
-    - name: Add repository
-      apt_repository:
-        repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
-        state: present
 
-    #
-    # Install filebeat 8.4.3 to match elastic and kibana
-    #      
-    - name: Install the latest version of the Filebeat
-      apt: 
-        name: filebeat=8.4.3
+- name: Add elastic apt-key
+  apt_key: 
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present 
 
-    - name: Enable filebeat service
-      systemd:
-        name: filebeat
-        daemon_reload: yes
-        enabled: yes
+- name: Add repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+    state: present
+
+#
+# Install filebeat 8.4.3 to match elastic and kibana
+#      
+- name: Install the latest version of the Filebeat
+  apt: 
+    name: filebeat=8.4.3
+
+- name: Enable filebeat service
+  systemd:
+    name: filebeat
+    daemon_reload: yes
+    enabled: yes

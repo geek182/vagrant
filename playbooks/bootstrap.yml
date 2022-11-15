@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Call required playbooks
+      include: "{{ item }}"
+      loop:
+        - packages.yml
+        - filebeat.yml
+        - metricbeat.yml
+        - heartbeat.yml

@@ -1,0 +1,13 @@
+---
+#
+# Install metricbeat 8.4.3 to match elastic and kibana
+#      
+- name: Install the latest version of the Metricbeat
+  apt: 
+    name: metricbeat=8.4.3
+
+- name: Enable metricbeat service
+  systemd:
+    name: metricbeat
+    daemon_reload: yes
+    enabled: yes

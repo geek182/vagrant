@@ -1,0 +1,13 @@
+---
+#
+# Install heartbeat 8.4.3 to match elastic and kibana
+#      
+- name: Install the latest version of the heartbeat
+  apt: 
+    name: heartbeat-elastic=8.4.3
+
+- name: Enable heartbeat service
+  systemd:
+    name: heartbeat-elastic
+    daemon_reload: yes
+    enabled: yes
